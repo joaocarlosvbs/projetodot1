@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using projetodot1.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<Contexto>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("conexao")));
 
 var app = builder.Build();
 
@@ -14,6 +20,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();

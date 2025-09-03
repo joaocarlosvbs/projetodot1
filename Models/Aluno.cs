@@ -12,13 +12,13 @@ namespace projetodot1.Models
 
         [Display(Name = "Nome do Aluno")]
         [Required(ErrorMessage = "O campo nome do aluno é obrigatório")]
-        [StringLength(150, ErrorMessage = "Nome deve ser inferior a 100 caracteres"))]
-        public string Nome { get; set; }
+        [StringLength(150, ErrorMessage = "Nome deve ser inferior a 100 caracteres")]
+        public string? Nome { get; set; }
 
         [Display(Name = "E-mail")]
         [Required(ErrorMessage = "O e-mail é obrigatório")]
         [EmailAddress]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         [Display(Name = "Data de Inscrição")]
         [Required(ErrorMessage = "A data é obrigatória")]

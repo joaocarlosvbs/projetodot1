@@ -12,8 +12,8 @@ namespace projetodot1.Models
 
         [Display(Name ="Nome do Livro")]
         [Required(ErrorMessage = "O nome do livro é obrigatório")]
-        [StringLength(200, ErrorMessage = "Título deve ser inferior a 100 caracteres"))]
-        public string Titulo { get; set; }
+        [StringLength(200, ErrorMessage = "Título deve ser inferior a 100 caracteres")]
+        public string? Titulo { get; set; }
 
         [Display(Name = "Ano de Publicação")]
         [Range(4, 4, ErrorMessage = "O ano de publicação deve ter no mínimo 4 dígitos.")]
@@ -22,7 +22,7 @@ namespace projetodot1.Models
         [Display(Name = "ISBN (International Standard Book Number")]
         [Required(ErrorMessage = "O ISBN do livro é obrigatório")]
         [StringLength(20)]
-        public string ISBN { get; set; }
+        public string? ISBN { get; set; }
 
         [Display(Name = "ID do Gênero")]
         public int GeneroId { get; set; }

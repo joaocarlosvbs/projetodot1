@@ -13,10 +13,10 @@ namespace projetodot1.Models
         [Display(Name = "Nome")]
         [Required(ErrorMessage = "O nome do autor é obrigatório")]
         [StringLength(150, ErrorMessage = "Nome deve ser inferior a 100 caracteres")]
-        public string Nome { get; set; }
+        public string? Nome { get; set; }
 
         [Display(Name = "Nacionalidade")]
         [StringLength(100, ErrorMessage = "Nacionalidade deve ser inferior a 100 caracteres")]
-        public string Nacionalidade { get; set; }
+        public string? Nacionalidade { get; set; }
     }
 }

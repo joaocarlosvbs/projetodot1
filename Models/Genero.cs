@@ -13,6 +13,6 @@ namespace projetodot1.Models
         [Display(Name = "Descrição")]
         [Required(ErrorMessage = "A descrição é obrigatória")]
         [StringLength(100, ErrorMessage = "Descrição deve ser inferior a 100 caracteres")]
-        public string Descricao { get; set; }
+        public string? Descricao { get; set; }
     }
 }
