@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("projetodot1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1cb36b159a6253872b7c3fb6ad2a97bff86bc5eb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80cd1f3ff0acb18d358ef666af2196724a3c2896")]
 [assembly: System.Reflection.AssemblyProductAttribute("projetodot1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("projetodot1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

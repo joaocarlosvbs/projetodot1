@@ -37,12 +37,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DataDevolucao)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Livro.ISBN)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Aluno.Email)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Livro.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Aluno.Nome)
+                </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

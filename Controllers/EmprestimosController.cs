@@ -18,14 +18,12 @@ namespace projetodot1.Controllers
             _context = context;
         }
 
-        // GET: Emprestimos
         public async Task<IActionResult> Index()
         {
             var contexto = _context.Emprestimos.Include(e => e.Aluno).Include(e => e.Livro);
             return View(await contexto.ToListAsync());
         }
 
-        // GET: Emprestimos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,34 +42,37 @@ namespace projetodot1.Controllers
 
             return View(emprestimo);
         }
-
-        // GET: Emprestimos/Create
+        
         public IActionResult Create()
-        {
-            ViewData["AlunoId"] = new SelectList(_context.Alunos, "Id", "Email");
-            ViewData["LivroId"] = new SelectList(_context.Livros, "Id", "ISBN");
+        {            
+            ViewData["AlunoId"] = new SelectList(_context.Alunos, "Id", "Nome");
+            ViewData["LivroId"] = new SelectList(_context.Livros.Where(l => l.Status == StatusLivro.Disponível), "Id", "Titulo");
             return View();
         }
-
-        // POST: Emprestimos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,DataEmprestimo,DataDevolucao,LivroId,AlunoId")] Emprestimo emprestimo)
         {
             if (ModelState.IsValid)
-            {
-                _context.Add(emprestimo);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["AlunoId"] = new SelectList(_context.Alunos, "Id", "Email", emprestimo.AlunoId);
-            ViewData["LivroId"] = new SelectList(_context.Livros, "Id", "ISBN", emprestimo.LivroId);
+            {                
+                var livro = await _context.Livros.FindAsync(emprestimo.LivroId);
+                if (livro != null && livro.Status == StatusLivro.Disponível)
+                {
+                    livro.Status = StatusLivro.Emprestado;
+                    _context.Update(livro);
+
+                    _context.Add(emprestimo);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }                
+                ModelState.AddModelError("LivroId", "O livro selecionado não está mais disponível.");
+            }            
+            ViewData["AlunoId"] = new SelectList(_context.Alunos, "Id", "Nome", emprestimo.AlunoId);
+            ViewData["LivroId"] = new SelectList(_context.Livros.Where(l => l.Status == StatusLivro.Disponível), "Id", "Titulo", emprestimo.LivroId);
             return View(emprestimo);
         }
-
-        // GET: Emprestimos/Edit/5
+        
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -83,15 +84,12 @@ namespace projetodot1.Controllers
             if (emprestimo == null)
             {
                 return NotFound();
-            }
-            ViewData["AlunoId"] = new SelectList(_context.Alunos, "Id", "Email", emprestimo.AlunoId);
-            ViewData["LivroId"] = new SelectList(_context.Livros, "Id", "ISBN", emprestimo.LivroId);
+            }            
+            ViewData["AlunoId"] = new SelectList(_context.Alunos, "Id", "Nome", emprestimo.AlunoId);
+            ViewData["LivroId"] = new SelectList(_context.Livros, "Id", "Titulo", emprestimo.LivroId);
             return View(emprestimo);
         }
-
-        // POST: Emprestimos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+               
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,DataEmprestimo,DataDevolucao,LivroId,AlunoId")] Emprestimo emprestimo)
@@ -104,7 +102,17 @@ namespace projetodot1.Controllers
             if (ModelState.IsValid)
             {
                 try
-                {
+                {                   
+                    if (emprestimo.DataDevolucao.HasValue)
+                    {
+                        var livro = await _context.Livros.FindAsync(emprestimo.LivroId);
+                        if (livro != null)
+                        {
+                            livro.Status = StatusLivro.Disponível;
+                            _context.Update(livro);
+                        }
+                    }
+
                     _context.Update(emprestimo);
                     await _context.SaveChangesAsync();
                 }
@@ -120,13 +128,12 @@ namespace projetodot1.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["AlunoId"] = new SelectList(_context.Alunos, "Id", "Email", emprestimo.AlunoId);
-            ViewData["LivroId"] = new SelectList(_context.Livros, "Id", "ISBN", emprestimo.LivroId);
+            }        
+            ViewData["AlunoId"] = new SelectList(_context.Alunos, "Id", "Nome", emprestimo.AlunoId);
+            ViewData["LivroId"] = new SelectList(_context.Livros, "Id", "Titulo", emprestimo.LivroId);
             return View(emprestimo);
         }
 
-        // GET: Emprestimos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -146,7 +153,6 @@ namespace projetodot1.Controllers
             return View(emprestimo);
         }
 
-        // POST: Emprestimos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -154,6 +160,13 @@ namespace projetodot1.Controllers
             var emprestimo = await _context.Emprestimos.FindAsync(id);
             if (emprestimo != null)
             {
+                var livro = await _context.Livros.FindAsync(emprestimo.LivroId);
+                if (livro != null)
+                {
+                    livro.Status = StatusLivro.Disponível;
+                    _context.Update(livro);
+                }
+
                 _context.Emprestimos.Remove(emprestimo);
             }
 

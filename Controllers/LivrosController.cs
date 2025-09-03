@@ -58,7 +58,7 @@ namespace projetodot1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,AnoPublicacao,ISBN,GeneroId,AutorId")] Livro livro)
+        public async Task<IActionResult> Create([Bind("Id,Titulo,AnoPublicacao,ISBN,Status,GeneroId,AutorId")] Livro livro)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace projetodot1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,AnoPublicacao,ISBN,GeneroId,AutorId")] Livro livro)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,AnoPublicacao,ISBN,Status,GeneroId,AutorId")] Livro livro)
         {
             if (id != livro.Id)
             {
