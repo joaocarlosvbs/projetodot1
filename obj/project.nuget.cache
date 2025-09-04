@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZQX0KElCIPi0z1gc1wLMViGegbbUk9K1kub9b6Yx7irKtzm/EJ1u+5cq7BthB//+I2z8qv7tMAZZ/JoWhxbc5Q==",
+  "dgSpecHash": "HAudF1+2R/oo7uF5IWmksSvXzmB2vz16xBUlk0K3DpbBWNhErtHkJRlWJsFr4iIWAlVmOfnLvBAQKE6vuPDTPA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LABORINFO\\Downloads\\projetodot1-main\\projetodot1-main\\projetodot1.csproj",
+  "projectFilePath": "C:\\Users\\LABORINFO\\Documents\\GitHub\\projetodot1\\projetodot1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LABORINFO\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\LABORINFO\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

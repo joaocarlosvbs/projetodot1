@@ -7894,11 +7894,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LABORINFO\\Downloads\\projetodot1-main\\projetodot1-main\\projetodot1.csproj",
+      "projectUniqueName": "C:\\Users\\LABORINFO\\Documents\\GitHub\\projetodot1\\projetodot1.csproj",
       "projectName": "projetodot1",
-      "projectPath": "C:\\Users\\LABORINFO\\Downloads\\projetodot1-main\\projetodot1-main\\projetodot1.csproj",
+      "projectPath": "C:\\Users\\LABORINFO\\Documents\\GitHub\\projetodot1\\projetodot1.csproj",
       "packagesPath": "C:\\Users\\LABORINFO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LABORINFO\\Downloads\\projetodot1-main\\projetodot1-main\\obj\\",
+      "outputPath": "C:\\Users\\LABORINFO\\Documents\\GitHub\\projetodot1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
