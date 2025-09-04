@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace projetodot1.Models
 {
-    // NOVO ENUM: Define os possíveis status que um livro pode ter.
     public enum StatusLivro
     {
         Disponível,
@@ -19,11 +18,10 @@ namespace projetodot1.Models
 
         [Display(Name = "Nome do Livro")]
         [Required(ErrorMessage = "O nome do livro é obrigatório")]
-        [StringLength(200, ErrorMessage = "O título deve ter no máximo 200 caracteres")] // Mensagem corrigida
+        [StringLength(200, ErrorMessage = "O título deve ter no máximo 200 caracteres")]
         public string? Titulo { get; set; }
 
         [Display(Name = "Ano de Publicação")]
-        // Range ajustado para garantir 4 dígitos
         [Range(1000, 2025, ErrorMessage = "O ano de publicação deve ser um valor válido de 4 dígitos.")]
         public int AnoPublicacao { get; set; }
 
@@ -32,7 +30,6 @@ namespace projetodot1.Models
         [StringLength(20)]
         public string? ISBN { get; set; }
 
-        // NOVA PROPRIEDADE: Armazena o estado atual do livro.
         [Display(Name = "Status")]
         public StatusLivro Status { get; set; }
 
@@ -46,7 +43,6 @@ namespace projetodot1.Models
         [ForeignKey("AutorId")]
         public virtual Autor? Autor { get; set; }
 
-        // NOVO CONSTRUTOR: Garante que um livro sempre comece como "Disponível".
         public Livro()
         {
             Status = StatusLivro.Disponível;
